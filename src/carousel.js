@@ -104,5 +104,28 @@ export function carouselBuilder() {
       }
     });
   }
-  return { carouselContainer, applyListeners };
+
+  function autoAdvance() {
+    const leftBtn = document.querySelector('.left-button');
+    const rightBtn = document.querySelector('.right-button');
+    const allDots = document.querySelectorAll('.dot');
+    const carouselImg = document.querySelector('.carousel-image');
+
+    setInterval(() => {
+      if (carouselTracker < imagesLength - 1) {
+        leftBtn.removeAttribute('disabled');
+        allDots.forEach((dot) => {
+          dot.classList.remove('active');
+        });
+        carouselTracker += 1;
+        carouselImg.src = imagesArray[carouselTracker];
+        allDots[carouselTracker].classList.add('active');
+        if (carouselTracker === imagesLength - 1) {
+          rightBtn.setAttribute('disabled', true);
+        }
+      }
+    }, 5000); // Every 5 seconds
+  }
+
+  return { carouselContainer, applyListeners, autoAdvance };
 }
