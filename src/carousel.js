@@ -16,7 +16,10 @@ export function carouselBuilder() {
 
   function carouselContainer(parentElement) {
     const container = document.createElement('div');
-    container.classList.add('carousel');
+    container.classList.add('carousel-main');
+
+    const upperCarousel = document.createElement('div');
+    upperCarousel.classList.add('carousel-upper');
 
     const leftBtn = document.createElement('button');
     leftBtn.classList.add('left-button');
@@ -31,9 +34,22 @@ export function carouselBuilder() {
     rightBtn.textContent = '>';
     rightBtn.classList.add('right-button');
 
-    container.appendChild(leftBtn);
-    container.appendChild(carouselImg);
-    container.appendChild(rightBtn);
+    upperCarousel.appendChild(leftBtn);
+    upperCarousel.appendChild(carouselImg);
+    upperCarousel.appendChild(rightBtn);
+
+    const lowerCarousel = document.createElement('div');
+    lowerCarousel.classList.add('carousel-lower');
+
+    for (let i = 0; i < imagesLength; i++) {
+      const dot = document.createElement('button');
+      dot.classList.add('dot');
+      dot.setAttribute('value', `${i}`);
+      dot.textContent = '•';
+      lowerCarousel.appendChild(dot);
+    }
+    container.appendChild(upperCarousel);
+    container.appendChild(lowerCarousel);
     parentElement.appendChild(container);
   }
 
@@ -58,6 +74,15 @@ export function carouselBuilder() {
         if (carouselTracker === imagesLength - 1) {
           rightBtn.setAttribute('disabled', true);
         }
+      } else if (e.target.closest('.dot')) {
+        const allDots = document.querySelectorAll('.dot');
+        allDots.forEach((dot) => {
+          dot.classList.remove('active');
+        });
+        const index = e.target.value;
+        e.target.classList.add('active');
+        console.log(index);
+        carouselImg.src = imagesArray[index];
       }
     });
   }

@@ -22,7 +22,15 @@ body {
   line-height: 1.5;
 }
 
-.carousel {
+.carousel-main {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  max-width: 30%;
+  margin: 0 auto;
+}
+
+.carousel-upper {
   display: flex;
   padding: 10px;
   align-items: center;
@@ -41,4 +49,24 @@ body {
 .carousel-image {
   height: 300px;
   width: 300px;
+}
+
+.carousel-lower {
+  display: flex;
+  position: absolute;
+  top: 100%;
+  left: 31%;
+  justify-content: center;
+  gap: 5px;
+}
+
+.dot {
+  color: silver;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.active {
+  color: black;
 }

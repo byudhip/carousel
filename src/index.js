@@ -7,3 +7,6 @@ const c = carouselBuilder();
 
 c.carouselContainer(body);
 c.applyListeners();
+
+const allDots = [...document.querySelectorAll('.dot')];
+allDots[0].classList.add('active');
