@@ -44,7 +44,7 @@ export function carouselBuilder() {
     for (let i = 0; i < imagesLength; i++) {
       const dot = document.createElement('button');
       dot.classList.add('dot');
-      dot.setAttribute('value', `${i}`);
+      dot.setAttribute('data-index', `${i}`); //to be used in event listener
       dot.textContent = '•';
       lowerCarousel.appendChild(dot);
     }
@@ -57,32 +57,50 @@ export function carouselBuilder() {
     const leftBtn = document.querySelector('.left-button');
     const rightBtn = document.querySelector('.right-button');
     const carouselImg = document.querySelector('.carousel-image');
+    const allDots = document.querySelectorAll('.dot');
     document.addEventListener('click', (e) => {
       if (e.target === leftBtn) {
         if (carouselTracker === 0) return;
         rightBtn.removeAttribute('disabled');
+        allDots.forEach((dot) => {
+          dot.classList.remove('active');
+        });
         carouselTracker -= 1;
         carouselImg.src = imagesArray[carouselTracker];
+        allDots[carouselTracker].classList.add('active');
         if (carouselTracker === 0) {
           leftBtn.setAttribute('disabled', true);
         }
       } else if (e.target === rightBtn) {
         if (carouselTracker === imagesLength) return;
         leftBtn.removeAttribute('disabled');
+        allDots.forEach((dot) => {
+          dot.classList.remove('active');
+        });
         carouselTracker += 1;
         carouselImg.src = imagesArray[carouselTracker];
+        allDots[carouselTracker].classList.add('active');
         if (carouselTracker === imagesLength - 1) {
           rightBtn.setAttribute('disabled', true);
         }
       } else if (e.target.closest('.dot')) {
-        const allDots = document.querySelectorAll('.dot');
+        leftBtn.removeAttribute('disabled');
+        rightBtn.removeAttribute('disabled');
         allDots.forEach((dot) => {
           dot.classList.remove('active');
         });
-        const index = e.target.value;
-        e.target.classList.add('active');
+        const clickedDot = e.target.closest('.dot');
+
+        const index = Number(clickedDot.dataset.index);
+        clickedDot.classList.add('active');
         console.log(index);
         carouselImg.src = imagesArray[index];
+        if (index === imagesLength - 1) {
+          rightBtn.setAttribute('disabled', true);
+        }
+        if (index === 0) {
+          leftBtn.setAttribute('disabled', true);
+        }
       }
     });
   }
