@@ -1,7 +1,7 @@
 {
-  "name": "template",
+  "name": "carousel",
   "version": "1.0.0",
-  "description": "to be used as template for future projects",
+  "description": "My attempt of carousel creation",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/byudhip/template.git"
+    "url": "git+https://github.com/byudhip/carousel.git"
   },
   "keywords": [],
   "author": "Yudhi Pratama",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/byudhip/template/issues"
+    "url": "https://github.com/byudhip/carousel/issues"
   },
-  "homepage": "https://github.com/byudhip/template#readme",
+  "homepage": "https://github.com/byudhip/carousel#readme",
   "devDependencies": {
     "@eslint/js": "^9.24.0",
     "css-loader": "^7.1.2",

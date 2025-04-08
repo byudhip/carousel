@@ -1,0 +1,44 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+/* Body Styles */
+body {
+  font-family: Helvetica, Arial, system-ui;
+  /* height: 100vh; */
+  line-height: 1.5;
+}
+
+.carousel {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+}
+
+.left-button,
+.right-button {
+  padding: 15px;
+  border: 1px solid silver;
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.carousel-image {
+  height: 300px;
+  width: 300px;
+}
